@@ -133,6 +133,7 @@ export default {
                     detail: this.task.detail,
                     user_id: this.task.user_id,
                     goal: this.task.goal,
+                    status: this.task.status,
                 }
                 console.log(this.task);
                 axios.put('/api/tasks/' + this.task.id, params)
