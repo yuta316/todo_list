@@ -3,7 +3,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import VueRouter from 'vue-router';
-import ElementUI from 'element-ui';
+import ElementUI, { Calendar } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'element-ui/lib/theme-chalk/display.css';
 import locale from 'element-ui/lib/locale/lang/ja';
@@ -16,6 +16,7 @@ import FooterComponent from "./views/layouts/FooterComponent"
 import TaskListComponent from "./views/tasks/TaskListComponent"
 import TaskShowComponent from "./views/tasks/TaskShowComponent"
 import TaskCreateComponent from "./views/tasks/TaskCreateComponent"
+import CalendarListComponent from "./views/calendars/CalendarListComponent"
 
 Vue.component('header-component', HeaderComponent);
 Vue.component('footer-component', FooterComponent);
@@ -43,6 +44,11 @@ const router = new VueRouter({
             name: 'task.create',
             component: TaskCreateComponent,
         },
+        {
+            path: '/calendar',
+            name: 'calendar',
+            component: CalendarListComponent,
+        }
  
     ]
 })

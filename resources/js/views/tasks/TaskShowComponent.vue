@@ -47,7 +47,7 @@
                     </div>
                 </form>
             <el-button>
-                <router-link :to="{ name: 'task.list' }">戻る</router-link>
+                <router-link :to="{ name: 'task.list' }">タスク一覧へ</router-link>
             </el-button>
             <span v-if="readStatus==true">
                 <el-button @click="readChange">

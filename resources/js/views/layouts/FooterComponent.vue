@@ -16,6 +16,5 @@ export default {
     padding: 4px 0;
     background-color: white;
     box-shadow: #E4E7ED 1px -1px;
-    
 }
 </style>

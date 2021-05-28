@@ -21,8 +21,13 @@
             <el-menu-item index="2-4-3">item three</el-menu-item> -->
             <!-- </el-submenu> -->
         </el-menu-item>
-        <el-menu-item index="3" disabled>Info</el-menu-item>
-        <el-submenu index="4">
+        <el-menu-item index="3">
+            <router-link :to="{ name: 'calendar' }">
+                <el-button icon="el-icon-date" type="text">カレンダー</el-button>
+            </router-link>
+        </el-menu-item>
+        <el-menu-item index="4" disabled>Info</el-menu-item>
+        <el-submenu index="5">
             <template slot="title"><i class="el-icon-user"></i>{{loginUser.name}}さんお疲れ様です</template>
             <el-menu-item index="4-1"><i class="el-icon-key"></i>マイページ</el-menu-item>
             <el-menu-item index="4-2"><i class="el-icon-close"></i>ログアウト</el-menu-item>
