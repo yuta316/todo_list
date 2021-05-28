@@ -56,7 +56,10 @@
 .header {
     margin: 0;
     padding: 0;
+    position: fixed;
+    width: 100%;
 
+    z-index: 999;
     &__title {
         font-size: 30px;
         margin:  20px 10% 0 10%;

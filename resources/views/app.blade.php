@@ -7,7 +7,7 @@
      <!-- CSRF Token -->
      <meta name="csrf-token" content="{{ csrf_token() }}">
  
-     <title>{{ config('app.name', 'Vue Laravel SPA') }}</title>
+     <title>タスク管理</title>
  
      <!-- Styles -->
      <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
@@ -15,14 +15,18 @@
  <body>
  <div id="app">
     <header-component></header-component>
-    <el-main>
+    <el-main class="main">
         <router-view></router-view>
     </el-main>
-    <el-footer>
-    Footer
-    </el-footer>
+    <footer-component></footer-component>
  </div>
  <!-- Scripts -->
  <script src="{{ mix('/js/app.js') }}" defer></script>
+
+ <style>
+     .main {
+         padding: 180px 3%;
+     }
+ </style>
  </body>
 </html>

@@ -1,5 +1,8 @@
 <template>
     <div class="app-container">
+        <squeeze-form 
+            :objects="users"
+            @change-user="squeezeTask"/>
         <el-row class="" :gutter="20">
             <draggable :options="options">
                 <el-col :span="8">
@@ -73,9 +76,12 @@
 <script>
 import draggable from "vuedraggable";
 import moment from 'moment';
+import SqueezeForm from './components/SqueezeForm.vue';
+
 export default {
     components: {
         draggable,
+        SqueezeForm,
     },
     filters: {
         moment(date){
@@ -85,6 +91,7 @@ export default {
     data() {
         return {
             tasks: [],
+            users: [],
             loginUser: [],
             options: {
                 animations: 200,
@@ -92,20 +99,29 @@ export default {
         }
     },
     methods: {
-        getTasks(){
-            axios.get('/api/tasks')
+        async getTasks(){
+            await axios.get('/api/tasks')
                 .then((response) => {
                     this.tasks = response.data;
                 });
         },
+        getUsers(){
+            axios.get('api/users')
+                .then((response) => {
+                    this.users = response.data;
+                });
+        },
+        //詳細
         handleClick(val){
             this.$router.push(`/tasks/${val}`);
         },
+        //要素がドラッグされた際に開始
         dragList(event, dragId){
             event.dataTransfer.effectAlloed = 'move'
             event.dataTransfer.dropEffect = 'move'
             event.dataTransfer.setData('list-id',dragId)
         },
+        //要素がドロップされた際に開始
         dropList(event, category){
             const dragId = event.dataTransfer.getData('list-id')
             const dragList = this.tasks.find(list => list.id == dragId)
@@ -117,10 +133,22 @@ export default {
                     .catch(error => {
                         console.log(error);
                     })
-        }
+        },
+        //formからuser_idを受け取り、axios.get=>完了後フィルターを行う
+        squeezeTask(val){
+            if(val){
+                this.getTasks()
+                    .then(() => {
+                        this.tasks =  this.tasks.filter(list => list.user_id == Number(val));
+                    })
+            }else{
+                this.getTasks();
+            }
+        },
     },
     mounted(){
-        this.getTasks()
+        this.getTasks();
+        this.getUsers();
     },
     computed: {
         wait(){
