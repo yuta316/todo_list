@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group row border-bottom">
                         <label for="status" class="col-sm-3 col-form-label">状態</label>
-                        <el-select v-model="task.user_id" placeholder="状態を選択してください" id="status">
+                        <el-select v-model="task.status" placeholder="状態を選択してください" id="status">
                             <el-option
                                 v-for="s in status"
                                 :key="s.id"
