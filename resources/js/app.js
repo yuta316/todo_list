@@ -38,7 +38,7 @@ const router = new VueRouter({
             props: true,
         },
         {
-            path: 'tasks/create',
+            path: '/tasks/create',
             name: 'task.create',
             component: TaskCreateComponent,
         },
