@@ -10,7 +10,6 @@ import locale from 'element-ui/lib/locale/lang/ja';
 import draggable from 'vuedraggable';
 //import ElInputTag from 'el-input-tag';
 
-
 import HeaderComponent from "./views/layouts/HeaderComponent"
 import FooterComponent from "./views/layouts/FooterComponent"
 import TaskListComponent from "./views/tasks/TaskListComponent"
@@ -31,7 +30,6 @@ const router = new VueRouter({
             path: '/tasks',
             name: 'task.list',
             component: TaskListComponent
-
         },
         {
             path: '/tasks/:taskId',

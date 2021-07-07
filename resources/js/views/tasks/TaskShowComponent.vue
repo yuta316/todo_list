@@ -117,7 +117,7 @@ export default {
                     })
                     .catch(error => {
                         console.log(error);
-                    });  
+                    });
             },
             readChange(){
                 this.readStatus = !this.readStatus;
@@ -135,7 +135,6 @@ export default {
                     goal: this.task.goal,
                     status: this.task.status,
                 }
-                console.log(this.task);
                 axios.put('/api/tasks/' + this.task.id, params)
                     .then(() => {
                         window.confirm("更新が完了しました");
