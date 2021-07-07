@@ -16,7 +16,7 @@
                             <div v-for="task in wait" :key="task.id" @dragstart="dragList($event,task.id)">
                                 <el-card class="box-card">
                                     <div slot="header" class="clearfix">
-                                        <span>{{ task.name }}<el-tag type="info">{{ task.status }}</el-tag></span>
+                                        <span>{{ task.name }}<el-tag type="info" class="task-tag">{{ task.status }}</el-tag></span>
                                         <el-button style="float: right; padding: 3px 0" type="text" @click="handleClick(task.id)">詳細</el-button>
                                     </div>
                                     <el-tag>担当者</el-tag><div class="text item" v-if="task.user">{{ task.user.name }}</div>
@@ -58,7 +58,7 @@
                             <div v-for="task in done" :key="task.id" @dragstart="dragList($event,task.id)">
                                 <el-card class="box-card">
                                     <div slot="header" class="clearfix">
-                                        <span>{{ task.name }}<el-tag type="warning">{{ task.status }}</el-tag></span>
+                                        <span>{{ task.name }}<el-tag type="warning" class="task-tag">{{ task.status }}</el-tag></span>
                                         <el-button style="float: right; padding: 3px 0" type="text" @click="handleClick(task.id)">詳細</el-button>
                                     </div>
                                     <el-tag>担当者</el-tag><div class="text item" v-if="task.user">{{ task.user.name }}</div>
@@ -168,10 +168,12 @@ export default {
 .title-tag {
     margin: 0 7%;
 }
-
+.task-tag {
+    margin: 0 5px;
+}
 .box-card-wrapper {
-    border-radius: 5%;
-    padding: 10px 0;
+    border-radius: 10px;
+    padding: 5px 0;
 }
 .box-card {
     width: 86%;

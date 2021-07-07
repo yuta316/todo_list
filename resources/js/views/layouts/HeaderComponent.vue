@@ -30,7 +30,12 @@
         <el-submenu index="5">
             <template slot="title"><i class="el-icon-user"></i>{{loginUser.name}}さんお疲れ様です</template>
             <el-menu-item index="4-1"><i class="el-icon-key"></i>マイページ</el-menu-item>
-            <el-menu-item index="4-2"><i class="el-icon-close"></i>ログアウト</el-menu-item>
+            <el-menu-item index="4-2">
+            <form action="/logout" method="POST">
+                <i class="el-icon-close"></i>
+                <input name="_token" :value=csrf_token type="hidden">
+                <button class="logout-btn">ログアウト</button></form>
+            </el-menu-item>
             <el-menu-item index="4-3"><i class="el-icon-s-claim"></i>連絡</el-menu-item>
         </el-submenu>
     </el-menu>
@@ -41,6 +46,7 @@
     data(){
         return {
             loginUser: [],
+            csrf_token: '',
         }
     },
     methods: {
@@ -48,11 +54,13 @@
             axios.get('api/user')
                 .then((response) => {
                     this.loginUser = response.data;
+                    console.log(this.loginUser);
                 });
-        }
+        },
     },
     mounted(){
         this.getLoginUser();
+        this.csrf_token = document.getElementById('csrf').content;
     }
  }
 </script>
@@ -69,5 +77,9 @@
         font-size: 30px;
         margin:  20px 10% 0 10%;
     }
+}
+.logout-btn {
+    border: none;
+    background-color: transparent;
 }
 </style>

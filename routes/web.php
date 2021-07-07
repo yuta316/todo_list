@@ -10,13 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// 認証機能に関するルーティング
 Auth::routes();
 Route::middleware('auth')->group(function(){
-    Route::post('/logout','App\Http\Controllers\Auth\LoginController@loggedOut');
     Route::get('/{any}', function(){
         return view('app');
     })->where('any', '.*');
 });
-Auth::routes();
-
-
+Route::get('/', function() {
+    dd(3);
+});
