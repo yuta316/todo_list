@@ -54,7 +54,6 @@
             axios.get('api/user')
                 .then((response) => {
                     this.loginUser = response.data;
-                    console.log(this.loginUser);
                 });
         },
     },

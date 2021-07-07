@@ -125,7 +125,6 @@ export default {
         dropList(event, category){
             const dragId = event.dataTransfer.getData('list-id')
             const dragList = this.tasks.find(list => list.id == dragId)
-            console.log(dragList.id)
             dragList.status = category
             axios.put('/api/tasks/' + dragList.id, dragList)
                     .then(() => {
