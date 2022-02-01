@@ -16,6 +16,7 @@ import TaskListComponent from "./views/tasks/TaskListComponent"
 import TaskShowComponent from "./views/tasks/TaskShowComponent"
 import TaskCreateComponent from "./views/tasks/TaskCreateComponent"
 import CalendarListComponent from "./views/calendars/CalendarListComponent"
+import TopPage from "./views/layouts/TopPageComponent"
 
 Vue.component('header-component', HeaderComponent);
 Vue.component('footer-component', FooterComponent);
@@ -26,6 +27,11 @@ Vue.use(ElementUI, { locale });
 const router = new VueRouter({
     mode: 'history',
     routes: [
+        {
+            path: '/',
+            name: 'topPage',
+            component: TopPage,
+        },
         {
             path: '/tasks',
             name: 'task.list',
