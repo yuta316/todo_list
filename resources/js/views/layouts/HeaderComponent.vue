@@ -1,33 +1,39 @@
 <template>
-    <el-menu class="header"   mode="horizontal" >
-        <div class="header__title"><i class="el-icon-s-claim"></i>タスク管理</div>
-        <el-menu-item index="1">
-            <!-- Listボタンへのリンク -->
-            <router-link :to="{name: 'task.list'}">
-                <el-button icon="el-icon-folder-opened" type="text">タスク一覧</el-button>
+    <el-menu
+        class="el-menu-vertical-demo"   
+        background-color="#222222"
+        text-color="#fff"
+        active-text-color="#ffd04b"
+        @open="handleOpen"
+        @close="handleClose"
+        :collapse="isCollapse"
+        :router="routerMode"
+    >
+        <h3 style="color: #fff; text-align: center; padding-top: 30px;">
+            <router-link :to="{ path: '/'}" style="color: #fff;">
+                <i class="el-icon-s-claim"></i>
+                タスク管理
             </router-link>
-        </el-menu-item>
-        <el-menu-item index="2">
-            <router-link :to="{ name: 'task.create' }">
-                <el-button  icon="el-icon-edit" type="text">タスクの追加</el-button>
-            </router-link>
-            <!-- <el-menu-item index="2-1">item one</el-menu-item>
-            <el-menu-item index="2-2">item two</el-menu-item>
-            <el-menu-item index="2-3">item three</el-menu-item>
-            <el-submenu index="2-4">
-            <template slot="title">item four</template>
-            <el-menu-item index="2-4-1">item one</el-menu-item>
-            <el-menu-item index="2-4-2">item two</el-menu-item>
-            <el-menu-item index="2-4-3">item three</el-menu-item> -->
-            <!-- </el-submenu> -->
-        </el-menu-item>
-        <el-menu-item index="3">
-            <router-link :to="{ name: 'calendar' }">
-                <el-button icon="el-icon-date" type="text">カレンダー</el-button>
-            </router-link>
-        </el-menu-item>
-        <el-menu-item index="4" disabled>Info</el-menu-item>
-        <el-submenu index="5">
+        </h3>
+        <el-divider></el-divider>
+        <el-submenu index="1">
+            <template slot="title">
+                <i class="el-icon-location"></i>
+            <span>タスク管理</span>
+            </template>
+            <el-menu-item index="1" :route="{name: 'task.list'}">
+                <i class="el-icon-folder-opened"></i>タスク一覧
+            </el-menu-item>
+            <el-menu-item index="2" :route="{ name: 'task.create' }">
+                <i class="el-icon-edit"></i>タスクの追加
+            </el-menu-item>
+            <el-menu-item index="3" :route="{ name: 'calendar' }">
+                <i class="el-icon-date"></i>カレンダー
+            </el-menu-item>
+            <el-menu-item index="4" disabled>Info</el-menu-item>
+        </el-submenu>
+        <el-divider></el-divider>
+        <el-submenu index="2">
             <template slot="title"><i class="el-icon-user"></i>{{loginUser.name}}さんお疲れ様です</template>
             <el-menu-item index="4-1"><i class="el-icon-key"></i>マイページ</el-menu-item>
             <el-menu-item index="4-2">
@@ -38,6 +44,7 @@
             </el-menu-item>
             <el-menu-item index="4-3"><i class="el-icon-s-claim"></i>連絡</el-menu-item>
         </el-submenu>
+        <el-divider></el-divider>
     </el-menu>
 </template>
 
@@ -47,6 +54,8 @@
         return {
             loginUser: [],
             csrf_token: '',
+            isCollapse: false,
+            routerMode: true,
         }
     },
     methods: {
@@ -56,6 +65,12 @@
                     this.loginUser = response.data;
                 });
         },
+        handleOpen(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      }
     },
     mounted(){
         this.getLoginUser();
@@ -74,11 +89,14 @@
     z-index: 999;
     &__title {
         font-size: 30px;
-        margin:  20px 10% 0 10%;
     }
 }
 .logout-btn {
     border: none;
     background-color: transparent;
 }
+.el-menu-vertical-demo{
+    width: 200px;
+    height: 100vh;
+  }
 </style>

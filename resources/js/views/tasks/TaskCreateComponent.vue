@@ -58,7 +58,7 @@
                         id:1,
                         status: "wait"
                     },
-                    {
+                    { 
                         id:2,
                         status: "doing"
                     },{

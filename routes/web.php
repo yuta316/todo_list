@@ -17,6 +17,3 @@ Route::middleware('auth')->group(function(){
         return view('app');
     })->where('any', '.*');
 });
-Route::get('/', function() {
-    dd(3);
-});
